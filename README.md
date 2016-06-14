@@ -68,11 +68,12 @@ QQ:1264957104
         tv2 = (Lu_Comment_TextView) findViewById(R.id.tv2);
 
         //谁 回复 谁 格式
-        Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity1 = tv1.getLu_pingLun_info_entity("我是ID001", "张三", "我是ID002", "李四", "你好啊你好啊");
+        Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity1 = tv1.getLu_pingLun_info_entity("评论ID", "我是ID001", "张三", "A头像", "我是ID002", "李四", "b头像", "你好啊你好啊");
         tv1.setText_PingLun(mLu_pingLun_info_entity1, new Lu_Comment_TextView.Lu_PingLunListener() {
+
             @Override
-            public void onNameClickListener(String onClickID, String onClickName, Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity, int position) {
-                Toast.makeText(mContext, "ID:" + onClickID + "   Name:" + onClickName, Toast.LENGTH_SHORT).show();
+            public void onNameClickListener(String onClickID, String onClickName, String onClickLogo, Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity, int position) {
+                System.out.println("onClickID = [" + onClickID + "], onClickName = [" + onClickName + "], onClickLogo = [" + onClickLogo + "], mLu_pingLun_info_entity = [" + mLu_pingLun_info_entity + "], position = [" + position + "]");
             }
 
             @Override
@@ -97,11 +98,12 @@ QQ:1264957104
         });
 
         //谁 说了什么
-        Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity2 = tv2.getLu_pingLun_info_entity("aaa1111", "王五", "你好啊你好啊");
+        Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity2 = tv2.getLu_pingLun_info_entity("评论ID", "111", "王五", "a头像", null, null, null, "你好啊你好啊");
         tv2.setText_PingLun(mLu_pingLun_info_entity2, new Lu_Comment_TextView.Lu_PingLunListener() {
+
             @Override
-            public void onNameClickListener(String onClickID, String onClickName, Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity, int position) {
-                Toast.makeText(mContext, "ID:" + onClickID + "   Name:" + onClickName, Toast.LENGTH_SHORT).show();
+            public void onNameClickListener(String onClickID, String onClickName, String onClickLogo, Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity, int position) {
+
             }
 
             @Override
