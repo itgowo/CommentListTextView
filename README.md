@@ -19,10 +19,11 @@ QQ:1264957104
 ![](http://i.imgur.com/jPYrFn9.gif)
 ![](http://i.imgur.com/BDFkB82.png)
 
+如果被评论人传参为null和“”会被识别为一个人评论。
 单独写了一个布局管理，增加了回调参数，此textview是独立的可以单独使用，布局管理出门右转
 
 ## onNameClickListener ##
-会传回name、id和logo，如果是谁回复谁格式，则返回的是被点击的人的相关信息，position是点击位置，如果是1是第一个人，2是第二个人，3是评论的内容，3不用判断，不会返回.如果被评论人传参为null和“”会被识别为一个人评论。
+会传回name、id和logo，如果是谁回复谁格式，则返回的是被点击的人的相关信息，position是点击位置，如果是1是第一个人，2是第二个人，3是评论的内容，3不用判断，不会返回.
 
 ## onTextClickListener ##
 返回评论内容
