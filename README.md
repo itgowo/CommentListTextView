@@ -7,7 +7,7 @@
 
 1.评论布局（自定义TextView）
 
-[Lu_comment_TextView](https://github.com/hnsugar/Lu_comment_TextView//)
+[Lu_comment_TextView](https://github.com/hnsugar/Lu_comment_TextView/)
 
 [Lu_PingLunLayout](https://github.com/hnsugar/lu_pinglunlayout/)
 
