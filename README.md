@@ -7,9 +7,15 @@
 
 1.评论布局（自定义TextView）
 
+[Lu_comment_TextView](https://github.com/hnsugar/Lu_comment_TextView//)
+
+[Lu_PingLunLayout](https://github.com/hnsugar/lu_pinglunlayout/)
+
 2.点赞布局（原理和评论的自定义TextView一样，都是用的SpannableString）
 
 3.图片列表（出门右转，理论上没有数量限制，和listView配合使用也很好，缓存也自己处理了）
+
+[MultiImageViewLayout](https://github.com/hnsugar/MultiImageViewLayout/)
 
 我也是找第三方例子不好找，于是自己写了一个，我和同事还打算做一套IM系统，app和后台都要做，我们自己定义sdk，我们还要封装H5，类似hbuilder如果有什么问题，可以联系我，
 
