@@ -3,28 +3,35 @@ package com.lujianchao.commentlisttextview.commentlisttextview;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private CommentListTextView mCommentListTextView;
+    private TextView mTextView;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
         mCommentListTextView = (CommentListTextView) findViewById (R.id.commentlist);
-test ();
+        mTextView = (TextView) findViewById (R.id.log);
+        test ();
     }
 
     private void test () {
+        mTextView.setMovementMethod (ScrollingMovementMethod.getInstance ());
+
+
         mCommentListTextView.setMaxlines (6);
         mCommentListTextView.setMoreStr ("查看更多");
         mCommentListTextView.setNameColor (Color.parseColor ("#fe671e"));
-        mCommentListTextView.setCommentColor ( Color.parseColor ("#242424"));
+        mCommentListTextView.setCommentColor (Color.parseColor ("#242424"));
         mCommentListTextView.setTalkStr ("回复");
-        mCommentListTextView.setTalkColor ( Color.parseColor ("#242424"));
+        mCommentListTextView.setTalkColor (Color.parseColor ("#242424"));
 
 
         List<CommentListTextView.CommentInfo> mCommentInfos = new ArrayList<> ();
@@ -43,25 +50,22 @@ test ();
 
             @Override
             public void onNickNameClick (final int position, final CommentListTextView.CommentInfo mInfo) {
-                System.out.println ("CommentListTextView.onNickNameClick");
-                System.out.println ("position = [" + position + "], mInfo = [" + mInfo + "]");
+                mTextView.append ("onNickNameClick  position = [" + position + "], mInfo = [" + mInfo + "]" + "\r\n");
             }
 
             @Override
             public void onToNickNameClick (final int position, final CommentListTextView.CommentInfo mInfo) {
-                System.out.println ("CommentListTextView.onToNickNameClick");
-                System.out.println ("position = [" + position + "], mInfo = [" + mInfo + "]");
+                mTextView.append ("onToNickNameClick  position = [" + position + "], mInfo = [" + mInfo + "]" + "\r\n");
             }
 
             @Override
             public void onCommentItemClick (final int position, final CommentListTextView.CommentInfo mInfo) {
-                System.out.println ("CommentListTextView.onCommentItemClick");
-                System.out.println ("position = [" + position + "], mInfo = [" + mInfo + "]");
+                mTextView.append ("onCommentItemClick  position = [" + position + "], mInfo = [" + mInfo + "]" + "\r\n");
             }
 
             @Override
             public void onOtherClick () {
-                System.out.println ("CommentListTextView.onOtherClick");
+                mTextView.append ("onOtherClick" + "\r\n");
             }
         });
     }
