@@ -100,15 +100,12 @@ position是第几条评论，mInfo是这条评论的信息
 
 		private void test () {
 			mTextView.setMovementMethod (ScrollingMovementMethod.getInstance ());
-
-
-			mCommentListTextView.setMaxlines (6);
-			mCommentListTextView.setMoreStr ("查看更多");
-			mCommentListTextView.setNameColor (Color.parseColor ("#fe671e"));
-			mCommentListTextView.setCommentColor (Color.parseColor ("#242424"));
-			mCommentListTextView.setTalkStr ("回复");
-			mCommentListTextView.setTalkColor (Color.parseColor ("#242424"));
-
+ 			mCommentListTextView.setMaxlines (6);//设置最大行数
+			mCommentListTextView.setMoreStr ("查看更多");//设置超出最大值后显示的文本
+			mCommentListTextView.setNameColor (Color.parseColor ("#fe671e"));//设置名字颜色，其他部分文字颜色按正常textview设置
+			mCommentListTextView.setCommentColor (Color.parseColor ("#242424"));//设置评论颜色，其他部分文字颜色按正常textview设置
+			mCommentListTextView.setTalkStr ("回复");//设置中间文本
+			mCommentListTextView.setTalkColor (Color.parseColor ("#242424"));//设置中间文本颜色
 
 			List<CommentListTextView.CommentInfo> mCommentInfos = new ArrayList<> ();
 			mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (1111).setComment ("今天天气真好啊！11").setNickname ("张三").setTonickname ("赵四"));
