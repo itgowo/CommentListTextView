@@ -23,128 +23,123 @@ QQ:1264957104
 
 ## 示例 ##
 ![](https://github.com/hnsugar/CommentListTextView/blob/master/pic1.jpg)
+![](https://github.com/hnsugar/CommentListTextView/blob/master/pic2.gif)
 ![](http://i.imgur.com/jPYrFn9.gif)
 ![](http://i.imgur.com/BDFkB82.png)
 
-如果被评论人传参为null和“”会被识别为一个人评论。
-单独写了一个布局管理，增加了回调参数，此textview是独立的可以单独使用，布局管理出门右转
+ 
 
-## onNameClickListener ##
-会传回name、id和logo，如果是谁回复谁格式，则返回的是被点击的人的相关信息，position是点击位置，如果是1是第一个人，2是第二个人，3是评论的内容，3不用判断，不会返回.
+## onNickNameClick (int position, CommentListTextView.CommentInfo mInfo)  ##
+“A回复B”中A名称被点击
+position是第几条评论，mInfo是这条评论的信息
 
-## onTextClickListener ##
-返回评论内容
+## onToNickNameClick (int position, CommentListTextView.CommentInfo mInfo) ##
+“A回复B”中B名称被点击
+position是第几条评论，mInfo是这条评论的信息
 
-## onClickOtherListener ##
-其他位置被点击，例如“回复”被点击，会触发这个监听
+## onCommentItemClick (int position, CommentListTextView.CommentInfo mInfo)  ##
+position是第几条评论，mInfo是这条评论的信息
 
-## onClickListener ##
-点击监听，任何位置都会触发，注意和其他监听的先后顺序
+## onOtherClick ##
+内部处理了点击文字会触发两个回调的问题，这个是点击非文字或者没有单独定义点击事件的回调
 
-## onLongClickListener ##
-长按监听，任何位置都会触发，注意和其他监听的先后顺序
+ 
 
 
 
 
 ## 布局 ##
  
-`<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.lujianchao.lu_comment_textview_demo.MainActivity">`
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.lujianchao.commentlisttextview.commentlisttextview.MainActivity">
 
-    <com.lujianchao.lu_comment_textview_demo.Lu_Comment_TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
+    <com.lujianchao.commentlisttextview.commentlisttextview.CommentListTextView
+        android:id="@+id/commentlist"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-    <com.lujianchao.lu_comment_textview_demo.Lu_Comment_TextView
-        android:id="@+id/tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-`</LinearLayout> `
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/log"
+        android:layout_width="match_parent"
+        android:scrollbars="vertical"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+
 
 
 
 ## 代码 ##
     
-`public class MainActivity extends AppCompatActivity {
-    private Lu_Comment_TextView tv1;
-    private Lu_Comment_TextView tv2;
-    private Context mContext;`
+public class MainActivity extends AppCompatActivity {
+    private CommentListTextView mCommentListTextView;
+    private TextView mTextView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mContext = this;
-        tv1 = (Lu_Comment_TextView) findViewById(R.id.tv1);
-        tv2 = (Lu_Comment_TextView) findViewById(R.id.tv2);
+    protected void onCreate (Bundle savedInstanceState) {
+        super.onCreate (savedInstanceState);
+        setContentView (R.layout.activity_main);
+        mCommentListTextView = (CommentListTextView) findViewById (R.id.commentlist);
+        mTextView = (TextView) findViewById (R.id.log);
+        test ();
+    }
 
-        //谁 回复 谁 格式
-        Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity1 = tv1.getLu_pingLun_info_entity("评论ID", "我是ID001", "张三", "A头像", "我是ID002", "李四", "b头像", "你好啊你好啊");
-        tv1.setText_PingLun(mLu_pingLun_info_entity1, new Lu_Comment_TextView.Lu_PingLunListener() {
+    private void test () {
+        mTextView.setMovementMethod (ScrollingMovementMethod.getInstance ());
+
+
+        mCommentListTextView.setMaxlines (6);
+        mCommentListTextView.setMoreStr ("查看更多");
+        mCommentListTextView.setNameColor (Color.parseColor ("#fe671e"));
+        mCommentListTextView.setCommentColor (Color.parseColor ("#242424"));
+        mCommentListTextView.setTalkStr ("回复");
+        mCommentListTextView.setTalkColor (Color.parseColor ("#242424"));
+
+
+        List<CommentListTextView.CommentInfo> mCommentInfos = new ArrayList<> ();
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (1111).setComment ("今天天气真好啊！11").setNickname ("张三").setTonickname ("赵四"));
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (2222).setComment ("今天天气真好啊！22").setNickname ("赵四"));
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (3333).setComment ("今天天气真好啊！33").setNickname ("王五").setTonickname ("小三"));
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (4444).setComment ("今天天气真好啊！44").setNickname ("小三").setTonickname ("王五"));
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (5555).setComment ("今天天气真好啊！55").setNickname ("李大"));
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (6666).setComment ("今天天气真好啊！66").setNickname ("小三").setTonickname ("王五"));
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (7777).setComment ("今天天气真好啊！77").setNickname ("李大").setTonickname ("张三"));
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (8888).setComment ("今天天气真好啊！88").setNickname ("小三").setTonickname ("王五"));
+        mCommentInfos.add (new CommentListTextView.CommentInfo ().setID (9999).setComment ("今天天气真好啊！99").setNickname ("李大").setTonickname ("张三"));
+        mCommentListTextView.setData (mCommentInfos);
+        mCommentListTextView.setonCommentListener (new CommentListTextView.onCommentListener () {
+
 
             @Override
-            public void onNameClickListener(String onClickID, String onClickName, String onClickLogo, Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity, int position) {
-                System.out.println("onClickID = [" + onClickID + "], onClickName = [" + onClickName + "], onClickLogo = [" + onClickLogo + "], mLu_pingLun_info_entity = [" + mLu_pingLun_info_entity + "], position = [" + position + "]");
+            public void onNickNameClick (final int position, final CommentListTextView.CommentInfo mInfo) {
+                mTextView.append ("onNickNameClick  position = [" + position + "], mInfo = [" + mInfo + "]" + "\r\n");
             }
 
             @Override
-            public void onTextClickListener(String onClickText, Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity, int position) {
-                Toast.makeText(mContext, onClickText, Toast.LENGTH_SHORT).show();
+            public void onToNickNameClick (final int position, final CommentListTextView.CommentInfo mInfo) {
+                mTextView.append ("onToNickNameClick  position = [" + position + "], mInfo = [" + mInfo + "]" + "\r\n");
             }
 
             @Override
-            public void onClickOtherListener(Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity) {
-                Toast.makeText(mContext, "其他位置", Toast.LENGTH_SHORT).show();
+            public void onCommentItemClick (final int position, final CommentListTextView.CommentInfo mInfo) {
+                mTextView.append ("onCommentItemClick  position = [" + position + "], mInfo = [" + mInfo + "]" + "\r\n");
             }
 
             @Override
-            public void onClickListener(Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity) {
-                Toast.makeText(mContext, "我被点击了", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClickListener(Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity) {
-                Toast.makeText(mContext, "我被长按了:", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //谁 说了什么
-        Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity2 = tv2.getLu_pingLun_info_entity("评论ID", "111", "王五", "a头像", null, null, null, "你好啊你好啊");
-        tv2.setText_PingLun(mLu_pingLun_info_entity2, new Lu_Comment_TextView.Lu_PingLunListener() {
-
-            @Override
-            public void onNameClickListener(String onClickID, String onClickName, String onClickLogo, Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity, int position) {
-
-            }
-
-            @Override
-            public void onTextClickListener(String onClickText, Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity, int position) {
-                Toast.makeText(mContext, onClickText, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onClickOtherListener(Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity) {
-                Toast.makeText(mContext, "其他位置", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onClickListener(Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity) {
-                Toast.makeText(mContext, "我被点击了", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClickListener(Lu_Comment_TextView.Lu_PingLun_info_Entity mLu_pingLun_info_entity) {
-                Toast.makeText(mContext, "我被长按了:", Toast.LENGTH_SHORT).show();
+            public void onOtherClick () {
+                mTextView.append ("onOtherClick" + "\r\n");
             }
         });
     }
-`}`
+}
