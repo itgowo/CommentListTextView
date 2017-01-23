@@ -22,6 +22,7 @@
 QQ:1264957104
 
 ## 示例 ##
+![](https://github.com/hnsugar/CommentListTextView/blob/master/pic1.jpg)
 ![](http://i.imgur.com/jPYrFn9.gif)
 ![](http://i.imgur.com/BDFkB82.png)
 
