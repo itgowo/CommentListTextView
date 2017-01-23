@@ -147,7 +147,7 @@ public class CommentListTextView extends TextView {
     private SpannableStringBuilder getCommentString () {
         SpannableStringBuilder mStringBuilder = new SpannableStringBuilder ();
         /**
-         * 对评论数据进行处理，默认超过3条则第4条显示查看全部
+         * 对评论数据进行处理，默认超过mMaxlines条则第mMaxlines+1条显示查看全部
          */
         for (int mI = 0; mI < mInfos.size (); mI++) {
             final CommentInfo mInfo = mInfos.get (mI);
