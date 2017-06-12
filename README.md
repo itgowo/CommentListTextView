@@ -53,8 +53,7 @@ GitHub:https://github.com/hnsugar
 	mCommentListTextView.setTalkColor (Color.parseColor ("#242424"));
 ####设置显示数据####
 	mCommentListTextView.setData (mCommentInfos);
-####设置监听####
-	mCommentListTextView.setonCommentListener (new CommentListTextView.onCommentListener ())
+####设置监听 mCommentListTextView.setonCommentListener (new CommentListTextView.onCommentListener ())
 ## onNickNameClick (int position, CommentListTextView.CommentInfo mInfo)  ##
 “A回复B”中A名称被点击
 position是第几条评论，mInfo是这条评论的信息
