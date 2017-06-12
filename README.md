@@ -39,21 +39,33 @@ GitHub:https://github.com/hnsugar
 ![](http://i.imgur.com/BDFkB82.png)
 
 ##主要方法##
+
 ####设置评论最大显示行数####
+
 	mCommentListTextView.setMaxlines (6);
+	
 ####设置超过最大行数下面显示的提示文本####
+
 	mCommentListTextView.setMoreStr ("查看更多");
+	
 ####设置名字文本显示颜色####
+
 	mCommentListTextView.setNameColor (Color.parseColor ("#fe671e"));
 ####设置评论内容文本颜色####
+
 	mCommentListTextView.setCommentColor (Color.parseColor ("#242424"));
 ####设置名字之间的文本####
+
 	mCommentListTextView.setTalkStr ("回复");
 ####设置名字之间的文本颜色####
+
 	mCommentListTextView.setTalkColor (Color.parseColor ("#242424"));
 ####设置显示数据####
+
 	mCommentListTextView.setData (mCommentInfos);
-####设置监听 mCommentListTextView.setonCommentListener (new CommentListTextView.onCommentListener ())
+####设置监听
+
+	mCommentListTextView.setonCommentListener (new CommentListTextView.onCommentListener ())
 ## onNickNameClick (int position, CommentListTextView.CommentInfo mInfo)  ##
 “A回复B”中A名称被点击
 position是第几条评论，mInfo是这条评论的信息
