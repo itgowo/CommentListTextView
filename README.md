@@ -28,7 +28,7 @@ CSDN:http://blog.csdn.net/hnsugar
 
 GitHub:https://github.com/hnsugar
 
-个人做测试项目的服务器:http://lujianchao.com
+个人做测试项目的服务器:http://lujianchao.com http://itgowo.com 
 
 链接是跳转到GitHub的，部分文章我会直接贴出关键View的代码。
 
